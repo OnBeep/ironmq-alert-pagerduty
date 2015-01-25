@@ -1,0 +1,5 @@
+runtime "python"
+exec "ironmq-alert-pagerduty.py"
+
+pip "pygerduty"
+pip "pyyaml"

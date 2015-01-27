@@ -23,6 +23,7 @@ if args.config is not None:
     config = yaml.load(open(args.config).read())
 pdapi = config['pagerduty_api_key']
 pdsvc = config['pagerduty_service_key']
+pdsub = config['pagerduty_subdomain']
 
 payload = {}
 if args.payload is not None:
@@ -42,7 +43,7 @@ queue_name = payload['source_queue']
 queue_size = payload['queue_size']
 
 desc = 'Queue [%s] is at size [%s]' % (queue_name, queue_size)
-pagerduty = pygerduty.PagerDuty('onbeep', api_token=pdapi)
+pagerduty = pygerduty.PagerDuty(pdsub, api_token=pdapi)
 pagerduty.trigger_incident(
     pdsvc,
     desc,
